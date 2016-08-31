@@ -1,0 +1,28 @@
+1. i used a socket,in that i implemented simple server_client prog of using TCP. 
+    Test_CASE: 		server                                      client
+		_(within the system)______
+		
+  		(1)127.0.0.1:8080-----------------------------127.0.0.1:8080      (true)
+		(2)127.0.0.1:8080-----------------------------172.24.100.162:8080 (false)
+		(3)172.24.100.162:8080------------------------172.24.100.162:8080 (true)
+		_(in my system)__				_(in other system)_
+		
+		(4)172.24.100.162:8080------------------------172.24.100.162:8080 (true)
+		(5)172.24.100.162:8080------------------------127.0.0.1:8080      (false)
+		(6)127.0.0.1:8080-----------------------------127.0.0.1:8080      (false)
+ 													
+2.If accept()is inside the while(1) then it will communicate only once after that it will block,and if we use accept() outside the while(1) then communication will be goes on untill we close the client or server.
+but it can not accept another client even i closed first client also,so for that we ll use
+				
+				new:
+				   accept();
+				while(1)
+				{
+				 	 n=recv(newsockfd,msg,100,0);
+               				 if(n==0)
+                			 {
+                        		 	close(newsockfd);
+                        		 	goto new;
+
+                			 }		
+ 

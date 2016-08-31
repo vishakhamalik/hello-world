@@ -67,22 +67,23 @@ int main(int argc,char *argv[])
 	listen(sockfd,MAX_CONNECTIONS);
 	printf("\n Waiting For client Connection........ \n");
 	len = sizeof(client);
-	//newsockfd = accept(sockfd,(struct sockaddr *)&client,&len);
+
+        new:
+	newsockfd = accept(sockfd,(struct sockaddr *)&client,&len);
 	while(1)
         {
-		newsockfd = accept(sockfd,(struct sockaddr *)&client,&len);
+//		newsockfd = accept(sockfd,(struct sockaddr *)&client,&len);
     		n=recv(newsockfd,msg,100,0);
     		if(n==0)
     		{
      		 	close(newsockfd);
-    		 	break;
+    		 	goto new;
+
     		}
     		msg[n]=0;
     		send(newsockfd,msg,n,0);
 
     		printf("Receive and set:%s\n",msg);
-   		//close interior while
-  		//return 0;
   	}
 	close(newsockfd);
 	return 0;

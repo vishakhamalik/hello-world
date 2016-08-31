@@ -1,0 +1,15 @@
+
+
+
+	server_tcp.c ----its a server program ,in which it will handle single client at a time.
+
+			compilation... gcc server_tcp.c -o server_tcp
+			running....... ./server_tcp 127.0.0.1:8080
+
+
+
+	client_tcp.c ----its client program ,in which client code is written.
+
+			compilation... gcc client_tcp.c -o client_tcp
+			running....... ./client_tcp.c 127.0.0.1:8080
+			 
